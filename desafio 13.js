@@ -1,19 +1,19 @@
 var jogahtml = window.document.getElementById('saida')
 
 function clique1() {
-    jogahtml.innerHTML += '<p> Você clicou escolheu a primeira opção = botão 1 </p>'
+    jogahtml.innerHTML += '<p> Você clicou escolheu a primeira opção = NADA ACONTECEU</p>'
 }
 
 function clique2() {
-    jogahtml.innerHTML += '<p> Você Clicou escolheu a primeira opção = botão 2 </p>'
+    jogahtml.innerHTML += '<p> Você Clicou escolheu a primeira opção = NADA ACONTECEU DE NOVO</p>'
 }
 
 function clique3() {
-    jogahtml.innerHTML += '<p> Você clicou escolheu a primeira opção = botão 3</p>'
+    jogahtml.innerHTML += '<p> Você clicou escolheu a primeira opção = NADINHA </p>'
 }
 
 function clique4() {
-    jogahtml.innerHTML += '<p> Você Clicou escolheu a primeira opção = botão 4</p>'
+    jogahtml.innerHTML += '<p> Você Clicou escolheu a primeira opção = BOA, PERDEU TEMPO, NADA DE NOVO</p>'
     }
 
 function parimpar() {
@@ -26,5 +26,5 @@ function parimpar() {
    }
 
    let res = document.querySelector('section#result')
-   res.innerHTML = `<p>0 número digitado foi $(num) e ele é: ${tipo}!</p>` 
+   res.innerHTML = `<p>0 número digitado foi $(num) e ele é: ${tipo}! </p>` 
 } 
