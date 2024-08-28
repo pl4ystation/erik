@@ -5,15 +5,15 @@ function clique1() {
 }
 
 function clique2() {
-    jogahtml.innerHTML += '<p> Você Clicou escolheu a primeira opção = NADA ACONTECEU DE NOVO</p>'
+    jogahtml.innerHTML += '<p> Você Clicou escolheu a segunda opção = NADA ACONTECEU DE NOVO</p>'
 }
 
 function clique3() {
-    jogahtml.innerHTML += '<p> Você clicou escolheu a primeira opção = NADINHA </p>'
+    jogahtml.innerHTML += '<p> Você clicou escolheu a terceira opção = NADINHA </p>'
 }
 
 function clique4() {
-    jogahtml.innerHTML += '<p> Você clicou escolheu a primeira opção = ISSO AE, NADA </p>'
+    jogahtml.innerHTML += '<p> Você clicou escolheu a quarta opção = ISSO AE, NADA </p>'
 }
 
 
