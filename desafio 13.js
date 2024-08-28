@@ -13,8 +13,9 @@ function clique3() {
 }
 
 function clique4() {
-    jogahtml.innerHTML += '<p> Você Clicou escolheu a primeira opção = BOA, PERDEU TEMPO, NADA DE NOVO</p>'
-    }
+    jogahtml.innerHTML += '<p> Você clicou escolheu a primeira opção = ISSO AE, NADA </p>'
+}
+
 
 function parimpar() {
    let num = Number(window.prompt('Digite um número: '))
