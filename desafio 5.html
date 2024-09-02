@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula back-end 3° Ano - Polo arapongas</title>
+    <title>Aula back-end 3° Ano - Polo Arapongas</title>
 </head>
 <body>
-    <h1>Calcule a media:</h1>
+    <h1>Calcule a média:</h1>
     <button onclick="validar()">Lance as notas</button>
     <script>
-        function validar(){
-            cont=1;
-            var media=0;
-            let nome = window.prompt('Qual e o seu nome? ')
+        function validar() {
+            let cont = 1;
+            let media = 0;
+            let nome = window.prompt('Qual é o seu nome? ');
 
-            while (cont <=4) {
-                var notas = window.prompt(`Qual a nota ${cont}?`))
-                media=media+notas;
-                cont ++
+            while (cont <= 4) {
+                let nota = Number(window.prompt(`Qual a nota ${cont}?`));
+                if (!isNaN(nota)) { // Verifica se a entrada é um número válido
+                    media += nota;
+                    cont++;
+                } else {
+                    window.alert("Por favor, insira um número válido.");
+                }
             }
-            window.alert(`Ola, ${nome}, sua media total foi ${media/4}!`)
+            
+            window.alert(`Olá, ${nome}, sua média total foi ${(media / 4).toFixed(2)}!`);
         }
     </script>
 </body>
