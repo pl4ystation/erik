@@ -1,3 +1,4 @@
+
 const form      = document.getElementById("form");
 const username  = document.getElementById("username");
 const email     = document.getElementById("email");
@@ -44,3 +45,30 @@ function checkInputs()
         // Adiciona a classe de erro
         formControl.className = "form-control error";
 }
+// Essa função faz trazer os erros EXATAMENTE ond ocorrem.. o small avalia so o pedaço do form que deu o err
+
+function setErrorFor (input, message) {
+
+const formControl = input.parentElement;
+
+const small = formControl.querySelector("small");
+
+// Adiciona a mensagem de erro
+small.innerText = message;
+
+
+// Adiciona a classe de erro
+
+formControl.className = "form-control error";
+}
+
+ function setSuccessFor (input) {
+const formControl = input.parentElement;
+// Adicionar a classe de sucesso
+formControl.className = "form-control success";
+}
+function checkEmail (email) {
+return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9][1,3],[0-9]{1,3}])](([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email );
+}
+
+ 
