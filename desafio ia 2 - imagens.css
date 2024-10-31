@@ -1,0 +1,67 @@
+/* Estilo básico da página com toque gamer */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: radial-gradient(circle, #0f0f0f, #1a1a1a);
+    color: #fff;
+}
+
+/* Container principal da galeria */
+.gallery-container {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    max-width: 700px;
+    width: 100%;
+}
+
+/* Título da galeria com estilo gamer */
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #d10000;
+    text-shadow: 0 0 8px #ff0000, 0 0 16px #f77001;
+}
+
+/* Layout da galeria */
+.gallery {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Estilo de cada imagem */
+.photo {
+    width: 205px;
+    height: 290px;
+    overflow: hidden;
+    border: 3px solid #d10909;
+    border-radius: 12px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 4px 8px rgba(0, 255, 255, 0.3);
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+/* Efeito ao passar o mouse com um toque gamer */
+.photo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 24px rgba(238, 203, 7, 0.925), 0 0 12px rgb(218, 203, 6);
+    border-color: #f5dd0a;
+}
+
+.photo img:hover {
+    transform: scale(1.1);
+}
