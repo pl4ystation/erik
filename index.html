@@ -1,103 +1,87 @@
- <!DOCTYPE html>
-<html lang="Pt-Br">
+<!DOCTYPE html>
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aula de Front-End</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="style5.css">
-
 </head>
 
 <body>
-
-    <header class="bg-light header">
-        <section>
-            <span class="span-1">Aprenda</span>
-            <span class="span-2">Na Prática</span>
-            
-            <section class="links">
-                <a href="index.html">Inicio</a>
-                <a href="Polo.html">Escola Polo</a>
-                <a href="Professor.html">Professor</a>
-                <a href="Arquivos.html">Arquivos</a>
-                <a href="exemplos.html">jogos</a>
-            </section>
-        </section>
+    <header class="bg-dark text-light header py-3">
+        <div class="container text-center">
+            <h1 class="span-1">Aprenda</h1>
+            <h2 class="span-2">Na Prática</h2>
+            <nav class="links mt-3">
+                <a href="index.html" class="link">Início</a>
+                <a href="Polo.html" class="link">Escola Polo</a>
+                <a href="Professor.html" class="link">Professor</a>
+                <a href="Arquivos.html" class="link">Arquivos</a>
+                <a href="exemplos.html" class="link">Jogos</a>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <! USANDO bootstrap>
-            <div class="container text-center">
-                <div class="row">
+    <main class="bg-light py-5">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-lg-4">
+                    <section class="secao-1">
+                        <h3>Prof. Robinho</h3>
+                        <div class="d-flex flex-column mt-3">
+                            <a href="desafio 1.html" class="btn btn-custom">Desafio 1</a>
+                            <a href="desafio 2.html" class="btn btn-custom">Desafio 2</a>
+                            <a href="desafio 3.html" class="btn btn-custom">Desafio 3</a>
+                            <a href="desafio 4.html" class="btn btn-custom">Desafio 4</a>
+                            <a href="desafio 5.html" class="btn btn-custom">Desafio 5</a>
+                            <a href="desafio 6.html" class="btn btn-custom">Desafio 6</a>
+                            <a href="desafio 7.html" class="btn btn-custom">Desafio 7</a>
+                            <a href="desafio8.html" class="btn btn-custom">Desafio 8</a>
+                            <a href="desafio 9.html" class="btn btn-custom">Desafio 9</a>
+                            <a href="desafio 10.html" class="btn btn-custom">Desafio 10</a>
+                            <a href="prova do robson.html" class="btn btn-custom">Desafio 11</a>
+                            <a href="desafio 12.html" class="btn btn-custom">Desafio 12</a>
+                            <a href="desafio 13.html" class="btn btn-custom">Desafio 13</a>
+                            <a href="somando a nota.html" class="btn btn-custom">Desafio 14</a>
+                            <a href="desafio15.html" class="btn btn-custom">Desafio 15</a>
+                            <a href="desafio16.html" class="btn btn-custom">Desafio 16</a>
+                            <a href="desafio16B.html" class="btn btn-custom">Desafio 16-B</a>
+                            <a href="Desafio IA 1.html" class="btn btn-custom">Desafio IA 1</a>
+                            <a href="SSS.html" class="btn btn-custom">SHAMPO</a>
+                            <a href="desafioIA 1.html" class="btn btn-custom">Desafio IA 1 - Formulário</a>
+                            <a href="desafio ia 2 - imagens.html" class="btn btn-custom">Desafio IA 2 - Imagens</a>
+                            <a href="cartão.html" class="btn btn-custom">Desafio IA 4 - Cartão</a>
+                        </div>
+                    </section>
+                </div>
 
-                    <div class="col">
-                        <section class="secao-1">
-                            <h3>Prof. Robinho</h3>
-                            <p></p>
-                                <a href="desafio 1.html" class="btn btn-info link-a-1">Desafio 1</a>
-                                <a href="desafio 2.html" class="btn btn-info link-a-1">Desafio 2</a>
-                                <a href="desafio 3.html" class="btn btn-info link-a-1">Desafio 3</a>
-                                <a href="desafio 4.html" class="btn btn-info link-a-1">Desafio 4</a>
-                                <a href="desafio 5.html" class="btn btn-info link-a-1">Desafio 5</a>
-                                <a href="desafio 6.html" class="btn btn-info link-a-1">Desafio 6</a>
-                                <a href="desafio 7.html" class="btn btn-info link-a-1">Desafio 7</a>
-                                <a href="desafio8.html" class="btn btn-info link-a-1">Desafio 8</a>
-                                <a href="desafio 9.html" class="btn btn-info link-a-1">Desafio 9</a>
-                                <a href="desafio 10.html" class="btn btn-info link-a-1">Desafio 10</a>
-                         <a href="prova do robson.html" class="btn btn-info link-a-1">desafio 11</a>
-                         <a href="desafio 12.html" class="btn btn-info link-a-1">Desafio 12</a>
-                               <a href="desafio 13.html" class="btn btn-info link-a-1">Desafio 13</a>
-                         <a href="somando a nota.html" class="btn btn-info link-a-1">desafio 14</a>
-                         <a href="desafio15.html" class="btn btn-info link-a-1">Desafio 15</a>
-                          <a href="desafio16.html" class="btn btn-info link-a-1">Desafio 16</a>
-                         <a href="desafio16B.html" class="btn btn-info link-a-1">Desafio 16-B</a>
-                         <a href="Desafio IA 1.html" class="btn btn-info link-a-1">Desafio IA 1</a>
-                         <a href="SSS.html" class="btn btn-info link-a-1">SHAMPO</a>
-                         <a href="desafioIA 1.html" class="btn btn-info link-a-1">desafio ia 1 - formulario</a>
-                         <a href="desafio ia 2 - imagens.html" class="btn btn-info link-a-1">desafio ia 2 - imagens</a>
-                         <a href="cartão.html" class="btn btn-info link-a-1">desafio ia 4 - cartão</a>
-                         
-                        </section>
-                    </div>
+                <div class="col-lg-4">
+                    <section class="secao-2">
+                        <div class="img">
+                            <img src="morris.webp" alt="Morris" class="img-fluid rounded-circle">
+                        </div>
+                    </section>
+                </div>
 
-                    <div class="col">
-                        <section class="secao-2">
-                            <div class="img">
-                                <img src="morris.webp" alt="">
-                            </div>
-                        </section>
-                    </div>
+                <div class="col-lg-4">
+                    <section class="secao-3">
+                        <img class="img-col img-fluid" src="www.webp" alt="Imagem">
+                    </section>
+                </div>
 
-                    <div class="col">
-                        <section class="secao-3">
-                            <p>
-                               
-                            </p>
-                            <img class="img-col" src="www.webp" alt="">
-                        </section>
-                    </div>
-
-                    <div class="col">
-                        <section class="secao-4">
-                            <p>
-                            </p>
-                            <img class="img-col" src="tela.png" alt="">
-                        </section>
-                    </div>
-
+                <div class="col-lg-4">
+                    <section class="secao-4">
+                        <img class="img-col img-fluid" src="tela.png" alt="Tela">
+                    </section>
                 </div>
             </div>
-
+        </div>
     </main>
-
 </body>
 
 </html>
