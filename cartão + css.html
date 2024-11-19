@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Dívida com Juros Compostos</title>
+    <title>Calculadora de Dívida com Tabela</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,7 +22,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            width: 300px;
+            width: 350px;
             text-align: center;
         }
 
@@ -71,7 +71,28 @@
             font-weight: bold;
             color: #333;
         }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
 
@@ -92,34 +113,61 @@
             <input type="number" id="taxaJuros" placeholder="Ex: 2" step="0.01" required>
         </div>
 
-        <!-- Botão para calcular -->
+        <!-- Botões -->
         <div class="form-group">
             <button onclick="calcularDivida()">Calcular Dívida</button>
+        </div>
+        <div class="form-group">
+            <button onclick="exportarParaExcel()">Exportar para Excel</button>
         </div>
 
         <!-- Exibição do resultado -->
         <div class="result" id="resultado"></div>
+        <table id="tabelaResultados"></table>
     </div>
 
     <script>
-        // Função para calcular a dívida com juros compostos
+        let dadosPlanilha = [];
+
         function calcularDivida() {
             const valorDivida = parseFloat(document.getElementById('valorDivida').value);
             const mesesAtraso = parseInt(document.getElementById('mesesAtraso').value);
             const taxaJuros = parseFloat(document.getElementById('taxaJuros').value) / 100;
 
-            // Validação dos dados de entrada
             if (isNaN(valorDivida) || isNaN(mesesAtraso) || isNaN(taxaJuros)) {
                 alert("Por favor, insira valores válidos para todos os campos.");
                 return;
             }
 
-            // Cálculo de juros compostos
             const valorFinal = valorDivida * Math.pow((1 + taxaJuros), mesesAtraso);
-
-            // Exibir o resultado formatado
             document.getElementById('resultado').innerText = 
                 `Valor Total da Dívida: R$ ${valorFinal.toFixed(2)}`;
+
+            // Gerar dados para a tabela
+            dadosPlanilha = [
+                ["Mês", "Valor da Dívida (R$)"]
+            ];
+
+            let tabela = `<tr><th>Mês</th><th>Valor da Dívida (R$)</th></tr>`;
+            for (let i = 1; i <= mesesAtraso; i++) {
+                const valorMes = valorDivida * Math.pow((1 + taxaJuros), i);
+                tabela += `<tr><td>${i}</td><td>${valorMes.toFixed(2)}</td></tr>`;
+                dadosPlanilha.push([i, valorMes.toFixed(2)]);
+            }
+            document.getElementById('tabelaResultados').innerHTML = tabela;
+        }
+
+        function exportarParaExcel() {
+            if (dadosPlanilha.length === 0) {
+                alert("Por favor, calcule a dívida primeiro.");
+                return;
+            }
+
+            const ws = XLSX.utils.aoa_to_sheet(dadosPlanilha);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Dívida");
+
+            XLSX.writeFile(wb, "calculo_divida.xlsx");
         }
     </script>
 
