@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Dívida com Tabela</title>
+    <title>Calculadora de Imposto de Renda</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,7 +19,7 @@
 
         .container {
             background-color: #fff;
-            padding: 20px;
+            padding: 85px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             width: 350px;
@@ -93,33 +92,25 @@
             font-weight: bold;
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
 
     <div class="container">
-        <h1>Calculadora de Dívida</h1>
+        <h1>Calculadora de Imposto de Renda</h1>
 
         <!-- Formulário de entrada de dados -->
         <div class="form-group">
-            <label for="valorDivida">Valor da Dívida (R$):</label>
-            <input type="number" id="valorDivida" placeholder="Ex: 1000" required>
+            <label for="nome">Nome do Funcionário:</label>
+            <input type="text" id="nome" placeholder="Digite o nome" required>
         </div>
         <div class="form-group">
-            <label for="mesesAtraso">Meses de Atraso:</label>
-            <input type="number" id="mesesAtraso" placeholder="Ex: 6" required>
-        </div>
-        <div class="form-group">
-            <label for="taxaJuros">Taxa de Juros (%) por Mês:</label>
-            <input type="number" id="taxaJuros" placeholder="Ex: 2" step="0.01" required>
+            <label for="salario">Salário Total (R$):</label>
+            <input type="number" id="salario" placeholder="Ex: 3000" required>
         </div>
 
         <!-- Botões -->
         <div class="form-group">
-            <button onclick="calcularDivida()">Calcular Dívida</button>
-        </div>
-        <div class="form-group">
-            <button onclick="exportarParaExcel()">Exportar para Excel</button>
+            <button onclick="calcularImposto()">Calcular Imposto de Renda</button>
         </div>
 
         <!-- Exibição do resultado -->
@@ -130,45 +121,49 @@
     <script>
         let dadosPlanilha = [];
 
-        function calcularDivida() {
-            const valorDivida = parseFloat(document.getElementById('valorDivida').value);
-            const mesesAtraso = parseInt(document.getElementById('mesesAtraso').value);
-            const taxaJuros = parseFloat(document.getElementById('taxaJuros').value) / 100;
+        function calcularImposto() {
+            const nome = document.getElementById('nome').value;
+            const salario = parseFloat(document.getElementById('salario').value);
 
-            if (isNaN(valorDivida) || isNaN(mesesAtraso) || isNaN(taxaJuros)) {
-                alert("Por favor, insira valores válidos para todos os campos.");
+            if (isNaN(salario) || salario <= 0) {
+                alert("Por favor, insira um salário válido.");
                 return;
             }
 
-            const valorFinal = valorDivida * Math.pow((1 + taxaJuros), mesesAtraso);
+            // Definição de taxas de imposto
+            let imposto = 0;
+            if (salario >= 5000) {
+                imposto = 17.5;
+            } else if (salario >= 4000) {
+                imposto = 12;
+            } else if (salario >= 3000) {
+                imposto = 7.5;
+            } else if (salario >= 1800) {
+                imposto = 3.5;
+            } else {
+                imposto = 0;
+            }
+
+            // Calcula o valor do imposto e o salário final
+            const valorImposto = (imposto / 100) * salario;
+            const salarioFinal = salario - valorImposto;
+
             document.getElementById('resultado').innerText = 
-                `Valor Total da Dívida: R$ ${valorFinal.toFixed(2)}`;
+                `Funcionário: ${nome} \nSalário Total: R$ ${salario.toFixed(2)} \nImposto (${imposto}%): R$ ${valorImposto.toFixed(2)} \nSalário com Imposto: R$ ${salarioFinal.toFixed(2)}`;
 
             // Gerar dados para a tabela
             dadosPlanilha = [
-                ["Mês", "Valor da Dívida (R$)"]
+                ["Funcionário", "Salário Total (R$)", "Imposto (%)", "Valor do Imposto (R$)", "Salário com Imposto (R$)"]
             ];
 
-            let tabela = `<tr><th>Mês</th><th>Valor da Dívida (R$)</th></tr>`;
-            for (let i = 1; i <= mesesAtraso; i++) {
-                const valorMes = valorDivida * Math.pow((1 + taxaJuros), i);
-                tabela += `<tr><td>${i}</td><td>${valorMes.toFixed(2)}</td></tr>`;
-                dadosPlanilha.push([i, valorMes.toFixed(2)]);
+            dadosPlanilha.push([nome, salario.toFixed(2), imposto, valorImposto.toFixed(2), salarioFinal.toFixed(2)]);
+
+            let tabela = `<tr><th>Funcionário</th><th>Salário Total (R$)</th><th>Imposto (%)</th><th>Valor do Imposto (R$)</th><th>Salário com Imposto (R$)</th></tr>`;
+            for (let i = 0; i < dadosPlanilha.length; i++) {
+                tabela += `<tr><td>${dadosPlanilha[i][0]}</td><td>${dadosPlanilha[i][1]}</td><td>${dadosPlanilha[i][2]}</td><td>${dadosPlanilha[i][3]}</td><td>${dadosPlanilha[i][4]}</td></tr>`;
             }
+
             document.getElementById('tabelaResultados').innerHTML = tabela;
-        }
-
-        function exportarParaExcel() {
-            if (dadosPlanilha.length === 0) {
-                alert("Por favor, calcule a dívida primeiro.");
-                return;
-            }
-
-            const ws = XLSX.utils.aoa_to_sheet(dadosPlanilha);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "Dívida");
-
-            XLSX.writeFile(wb, "calculo_divida.xlsx");
         }
     </script>
 
