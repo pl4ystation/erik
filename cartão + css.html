@@ -1,171 +1,209 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Imposto de Renda</title>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CALCULAR IMPOSTO</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #8901c3, #fffef9); /* Fundo gradiente */
-            color: #333;
-        }
+      /* styles.css */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #fefcff, #800a7c);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        color: #333;
+      }
 
-        .container {
-            background-color: #fff;
-            padding: 85px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            width: 350px;
-            text-align: center;
-        }
+      .container {
+        background: linear-gradient(135deg, #fefcff, #e700e0);
+        padding: 20px;
+        border: 5px solid #800080;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 90%;
+        max-width: 800px;
+      }
 
-        h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
+      h1,
+      h2 {
+        color: #800080;
+      }
 
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
+      label {
+        display: block;
+        margin: 10px 0 5px;
+        font-weight: bold;
+      }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+      input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 2px solid #800080;
+        border-radius: 5px;
+      }
 
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+      button {
+        padding: 10px 20px;
+        background: #800080;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+      }
 
-        .form-group button {
-            width: 100%;
-            padding: 10px;
-            background-color: #5e0c5e;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+      button:hover {
+        background: #9932cc;
+      }
 
-        .form-group button:hover {
-            background-color: #228B22;
-        }
+      .result p {
+        margin: 10px 0;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #333;
+      }
 
-        .result {
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-        }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
 
-        table {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-            text-align: center;
-        }
+      thead th {
+        background: #800080;
+        color: #fff;
+        padding: 10px;
+        text-align: left;
+      }
 
-        table, th, td {
-            border: 1px solid #ccc;
-        }
+      tbody tr:nth-child(even) {
+        background: #f2f2f2;
+      }
 
-        th, td {
-            padding: 8px;
-        }
+      tbody tr:hover {
+        background: #e0e0e0;
+      }
 
-        th {
-            background-color: #f4f4f4;
-            font-weight: bold;
-        }
+      td,
+      th {
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="container">
-        <h1>Calculadora de Imposto de Renda</h1>
+      <h1>CALCULAR IMPOSTO</h1>
+      <form id="taxForm">
+        <label for="employeeName">Nome do Funcionário:</label>
+        <input
+          type="text"
+          id="employeeName"
+          placeholder="Digite o nome"
+          required
+        />
 
-        <!-- Formulário de entrada de dados -->
-        <div class="form-group">
-            <label for="nome">Nome do Funcionário:</label>
-            <input type="text" id="nome" placeholder="Digite o nome" required>
-        </div>
-        <div class="form-group">
-            <label for="salario">Salário Total (R$):</label>
-            <input type="number" id="salario" placeholder="Ex: 3000" required>
-        </div>
+        <label for="grossValue">Valor Bruto (R$):</label>
+        <input
+          type="number"
+          id="grossValue"
+          placeholder="Digite o valor bruto"
+          required
+        />
 
-        <!-- Botões -->
-        <div class="form-group">
-            <button onclick="calcularImposto()">Calcular Imposto de Renda</button>
-        </div>
-
-        <!-- Exibição do resultado -->
-        <div class="result" id="resultado"></div>
-        <table id="tabelaResultados"></table>
+        <button type="button" onclick="calculateAndSave()">
+          Calcular e Salvar
+        </button>
+      </form>
+      <div class="result">
+        <p id="taxAmount">Imposto: R$ 0.00</p>
+        <p id="finalValue">Valor Final: R$ 0.00</p>
+      </div>
+      <h2>Histórico de Cálculos</h2>
+      <table id="historyTable">
+        <thead>
+          <tr>
+            <th>Funcionário</th>
+            <th>Valor Bruto</th>
+            <th>Imposto (%)</th>
+            <th>Valor do Imposto</th>
+            <th>Valor Final</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Linhas serão adicionadas aqui -->
+        </tbody>
+      </table>
     </div>
-
     <script>
-        let dadosPlanilha = [];
+      // script.js
+      function calculateAndSave() {
+        const employeeName = document
+          .getElementById("employeeName")
+          .value.trim();
+        const grossValue = parseFloat(
+          document.getElementById("grossValue").value
+        );
 
-        function calcularImposto() {
-            const nome = document.getElementById('nome').value;
-            const salario = parseFloat(document.getElementById('salario').value);
-
-            if (isNaN(salario) || salario <= 0) {
-                alert("Por favor, insira um salário válido.");
-                return;
-            }
-
-            // Definição de taxas de imposto
-            let imposto = 0;
-            if (salario >= 5000) {
-                imposto = 17.5;
-            } else if (salario >= 4000) {
-                imposto = 12;
-            } else if (salario >= 3000) {
-                imposto = 7.5;
-            } else if (salario >= 1800) {
-                imposto = 3.5;
-            } else {
-                imposto = 0;
-            }
-
-            // Calcula o valor do imposto e o salário final
-            const valorImposto = (imposto / 100) * salario;
-            const salarioFinal = salario - valorImposto;
-
-            document.getElementById('resultado').innerText = 
-                `Funcionário: ${nome} \nSalário Total: R$ ${salario.toFixed(2)} \nImposto (${imposto}%): R$ ${valorImposto.toFixed(2)} \nSalário com Imposto: R$ ${salarioFinal.toFixed(2)}`;
-
-            // Gerar dados para a tabela
-            dadosPlanilha = [
-                ["Funcionário", "Salário Total (R$)", "Imposto (%)", "Valor do Imposto (R$)", "Salário com Imposto (R$)"]
-            ];
-
-            dadosPlanilha.push([nome, salario.toFixed(2), imposto, valorImposto.toFixed(2), salarioFinal.toFixed(2)]);
-
-            let tabela = `<tr><th>Funcionário</th><th>Salário Total (R$)</th><th>Imposto (%)</th><th>Valor do Imposto (R$)</th><th>Salário com Imposto (R$)</th></tr>`;
-            for (let i = 0; i < dadosPlanilha.length; i++) {
-                tabela += `<tr><td>${dadosPlanilha[i][0]}</td><td>${dadosPlanilha[i][1]}</td><td>${dadosPlanilha[i][2]}</td><td>${dadosPlanilha[i][3]}</td><td>${dadosPlanilha[i][4]}</td></tr>`;
-            }
-
-            document.getElementById('tabelaResultados').innerHTML = tabela;
+        if (!employeeName || isNaN(grossValue)) {
+          alert("Por favor, preencha todos os campos corretamente.");
+          return;
         }
-    </script>
 
-</body>
+        let taxRate = 0;
+
+        // Determinar a alíquota com base no valor bruto
+        if (grossValue >= 5000) {
+          taxRate = 17.5;
+        } else if (grossValue >= 4000) {
+          taxRate = 12;
+        } else if (grossValue >= 3000) {
+          taxRate = 7.5;
+        } else if (grossValue >= 1800) {
+          taxRate = 3.5;
+        } else {
+          taxRate = 0;
+        }
+
+        // Calcular o imposto e o valor final
+        const taxAmount = (grossValue * taxRate) / 100;
+        const finalValue = grossValue - taxAmount;
+
+        // Atualizar os resultados no HTML
+        document.getElementById(
+          "taxAmount"
+        ).textContent = `Imposto: R$ ${taxAmount.toFixed(2)}`;
+        document.getElementById(
+          "finalValue"
+        ).textContent = `Valor Final: R$ ${finalValue.toFixed(2)}`;
+
+        // Adicionar os dados na tabela
+        const tableBody = document
+          .getElementById("historyTable")
+          .querySelector("tbody");
+        const newRow = document.createElement("tr");
+
+        newRow.innerHTML = `
+        <td>${employeeName}</td>
+        <td>R$ ${grossValue.toFixed(2)}</td>
+        <td>${taxRate}%</td>
+        <td>R$ ${taxAmount.toFixed(2)}</td>
+        <td>R$ ${finalValue.toFixed(2)}</td>
+    `;
+
+        tableBody.appendChild(newRow);
+
+        // Limpar os campos do formulário
+        document.getElementById("employeeName").value = "";
+        document.getElementById("grossValue").value = "";
+      }
+    </script>
+  </body>
 </html>
